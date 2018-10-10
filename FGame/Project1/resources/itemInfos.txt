@@ -1,4 +1,0 @@
-3
-ERR ^
-SOCK Just^simple^sock
-ROPE Simple^rope^created^of^3^socks.^Length^is^about^1^floor.

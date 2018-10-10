@@ -1,0 +1,161 @@
+﻿  Camera.cpp
+  main.cpp
+main.cpp(35): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+main.cpp(36): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+main.cpp(51): warning C4244: аргумент: преобразование "const int" в "float", возможна потеря данных
+main.cpp(54): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+main.cpp(69): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
+  Planet.cpp
+Planet.cpp(14): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+Planet.cpp(31): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+Planet.cpp(31): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+Planet.cpp(45): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+Planet.cpp(46): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+Planet.cpp(47): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+Planet.cpp(49): warning C4244: аргумент: преобразование "const int" в "float", возможна потеря данных
+Planet.cpp(71): warning C4244: аргумент: преобразование "const int" в "float", возможна потеря данных
+Planet.cpp(71): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+Planet.cpp(72): warning C4244: аргумент: преобразование "const int" в "float", возможна потеря данных
+Planet.cpp(72): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+Planet.cpp(82): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  Player.cpp
+Player.cpp(42): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+Player.cpp(57): warning C4244: аргумент: преобразование "const int" в "float", возможна потеря данных
+Player.cpp(64): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+Player.cpp(69): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+Player.cpp(74): warning C4244: аргумент: преобразование "const int" в "float", возможна потеря данных
+Player.cpp(74): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+Player.cpp(75): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+Player.cpp(77): warning C4244: аргумент: преобразование "const int" в "float", возможна потеря данных
+Player.cpp(80): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+Player.cpp(84): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+Player.cpp(89): warning C4244: аргумент: преобразование "const int" в "float", возможна потеря данных
+Player.cpp(89): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  SupMath.cpp
+SupMath.cpp(1): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+  Tree.cpp
+Tree.cpp(21): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+Tree.cpp(22): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+Tree.cpp(24): warning C4244: -=: преобразование "double" в "float", возможна потеря данных
+Tree.cpp(25): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+Tree.cpp(26): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+Tree.cpp(28): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+Tree.cpp(60): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+Tree.cpp(87): warning C4244: аргумент: преобразование "float" в "unsigned int", возможна потеря данных
+Tree.cpp(95): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+Tree.cpp(96): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+sfml-graphics-s-d.lib(RenderStates.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(RenderStates.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(Transformable.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(Transformable.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(Texture.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(Texture.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(RenderWindow.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(RenderWindow.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(Color.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(Color.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(RenderTarget.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(RenderTarget.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(Shape.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(Shape.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(RectangleShape.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(RectangleShape.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(Sprite.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(Sprite.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(RenderTexture.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(RenderTexture.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(Transform.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(Transform.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(Image.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(Image.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(GLExtensions.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(GLExtensions.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(GLCheck.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(GLCheck.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(View.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(View.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(Shader.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(Shader.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(VertexArray.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(VertexArray.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(RenderTextureImplFBO.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(RenderTextureImplFBO.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(RenderTextureImplDefault.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(RenderTextureImplDefault.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(ImageLoader.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(ImageLoader.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-graphics-s-d.lib(Glsl.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-graphics-s-d.lib(Glsl.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(Window.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(Window.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(VideoMode.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(VideoMode.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(Context.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(Context.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(GlContext.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(GlContext.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(WindowImpl.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(WindowImpl.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(VideoModeImpl.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(VideoModeImpl.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(InputImpl.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(InputImpl.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(WglContext.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(WglContext.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(JoystickManager.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(JoystickManager.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(SensorManager.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(SensorManager.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(WindowImplWin32.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(WindowImplWin32.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(WglExtensions.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(WglExtensions.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(Joystick.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(Joystick.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-window-s-d.lib(JoystickImpl.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-window-s-d.lib(JoystickImpl.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-system-s-d.lib(String.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-system-s-d.lib(String.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-system-s-d.lib(Err.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-system-s-d.lib(Err.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+sfml-system-s-d.lib(ThreadLocal.cpp.obj) : error LNK2038: обнаружено несоответствие для "_ITERATOR_DEBUG_LEVEL": значение "2" не соответствует значению "0" в Camera.obj
+sfml-system-s-d.lib(ThreadLocal.cpp.obj) : error LNK2038: обнаружено несоответствие для "RuntimeLibrary": значение "MDd_DynamicDebug" не соответствует значению "MD_DynamicRelease" в Camera.obj
+     Создается библиотека C:\Users\artiom\source\repos\FGame\x64\Release\Project1.lib и объект C:\Users\artiom\source\repos\FGame\x64\Release\Project1.exp
+LINK : warning LNK4098: библиотека по умолчанию "MSVCRTD" противоречит использованию других библиотек; используйте параметр /NODEFAULTLIB:library
+sfml-window-s-d.lib(JoystickImpl.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-system-s-d.lib(String.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-window-s-d.lib(WglContext.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-window-s-d.lib(JoystickManager.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-window-s-d.lib(WindowImplWin32.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-window-s-d.lib(WglExtensions.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-window-s-d.lib(VideoMode.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-window-s-d.lib(GlContext.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-window-s-d.lib(WindowImpl.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-window-s-d.lib(VideoModeImpl.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-graphics-s-d.lib(Shader.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-graphics-s-d.lib(VertexArray.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-graphics-s-d.lib(ImageLoader.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-window-s-d.lib(Window.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-graphics-s-d.lib(Texture.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-graphics-s-d.lib(Shape.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-graphics-s-d.lib(Image.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-graphics-s-d.lib(GLCheck.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__invalid_parameter"
+sfml-window-s-d.lib(JoystickImpl.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-system-s-d.lib(String.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-window-s-d.lib(WglContext.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-window-s-d.lib(JoystickManager.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-window-s-d.lib(WindowImplWin32.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-window-s-d.lib(WglExtensions.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-window-s-d.lib(VideoMode.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-window-s-d.lib(GlContext.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-window-s-d.lib(WindowImpl.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-window-s-d.lib(VideoModeImpl.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-graphics-s-d.lib(Shader.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-graphics-s-d.lib(VertexArray.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-graphics-s-d.lib(ImageLoader.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-window-s-d.lib(Window.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-graphics-s-d.lib(Texture.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-graphics-s-d.lib(Shape.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-graphics-s-d.lib(Image.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+sfml-graphics-s-d.lib(GLCheck.cpp.obj) : error LNK2001: неразрешенный внешний символ "__imp__CrtDbgReportW"
+C:\Users\artiom\source\repos\FGame\x64\Release\Project1.exe : fatal error LNK1120: неразрешенных внешних элементов: 2

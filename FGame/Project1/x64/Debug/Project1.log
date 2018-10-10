@@ -1,0 +1,10 @@
+﻿  main.cpp
+c:\users\artiom\source\repos\fgame\project1\main.cpp(41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+c:\users\artiom\source\repos\fgame\project1\main.cpp(42): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+c:\users\artiom\source\repos\fgame\project1\main.cpp(55): warning C4244: аргумент: преобразование "float" в "unsigned int", возможна потеря данных
+c:\users\artiom\source\repos\fgame\project1\main.cpp(63): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+c:\users\artiom\source\repos\fgame\project1\main.cpp(64): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+c:\users\artiom\source\repos\fgame\project1\main.cpp(94): warning C4244: аргумент: преобразование "const int" в "float", возможна потеря данных
+c:\users\artiom\source\repos\fgame\project1\main.cpp(97): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+c:\users\artiom\source\repos\fgame\project1\main.cpp(117): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
+  Project1.vcxproj -> C:\Users\artiom\source\repos\FGame\x64\Debug\Project1.exe

@@ -13,7 +13,7 @@ using namespace sf;
 using namespace std;
 
 const int mapWidth = 250;
-const int mapHeight = 70;
+const int mapHeight = 80;
 
 class Planet {
 private:

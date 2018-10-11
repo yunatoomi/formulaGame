@@ -10,7 +10,8 @@
 #include "Tree.h"
 #include "Planet.h"
 #include "vector"
-#include "future"
+#include "Space.h"
+#include "PlanetTextures.h"
 
 using namespace sf;
 using namespace std;
@@ -22,6 +23,7 @@ bool isWorking = true;
 const int blockSize = 10;
 
 Camera camera(Vector2i(900, 700), Vector2f(0, 0));
+Camera spaceCamera(Vector2i(900, 700), Vector2f(0, 0));
 
 Player player(Vector2f((900) / 2, (700) / 2), Vector2f(500, 500), Vector2f((900)/2, (700)/2), 300, 15);
 
@@ -32,7 +34,11 @@ vector<Sprite> treeSprites;
 //Tree tree(Branch(Vector2f(300, 300), 8, 60, 180, 3), 13, 3);
 //Tree tree2(Branch(Vector2f(500, 300), 8, 60, 180, 3), 22, 3);
 
-Planet currentPlanet(0);
+Planet currentPlanet(12);
+
+bool isOnPlanet = true;
+int timeToExitPlanet = 0;
+bool activatedExiting = true;
 
 void setCameraPos() {
 	Vector2f cameraPos = camera.getCameraPos();
@@ -73,6 +79,36 @@ Texture updatePlanetTrees() {
 	return r;
 }
 
+void drawingModePlanet(RenderWindow& window, Camera camera) {
+	window.clear(Color(255, 255, 255));
+	currentPlanet.drawPlanet(window, camera);
+	player.draw(window, camera);
+}
+
+void checkIsOnPlanet() {
+	if (player.getPosition().y <= 0 && activatedExiting) {
+		player.freeze(3);
+		activatedExiting = false;
+		timeToExitPlanet = time(NULL) + 3;
+	}
+}
+
+double function2(int i, double step) {
+	return sin((i*step)*3.14);
+}
+
+double function3(int i, double step) {
+	return cos((i*step)*3.14);
+}
+
+double function4(int i, double step) {
+	return pow((i*step), 0.5);
+}
+
+double function1(int i, double step) {
+	return tan((i*step)*3.14/180);
+}
+
 int main()
 {
 	/*std::mt19937 engine;
@@ -92,7 +128,6 @@ int main()
 
 	player.setPlayerSpriteTexture(generatePlayerTexture());
 	Texture p = generatePlayerTexture();
-	updatePlanetTrees();
 	
 	while (mWindow.isOpen()) {
 		Event event;
@@ -108,12 +143,18 @@ int main()
 		float deltaTime = clock.getElapsedTime().asMicroseconds();
 		deltaTime = deltaTime / 1000000;
 		clock.restart();
-		player.update(deltaTime);
-		mWindow.draw(background);
-		currentPlanet.drawPlanet(mWindow, camera);
-		//drawTrees(mWindow, camera);
-		player.draw(mWindow, camera);
-	//	mWindow.draw(sadf);
+		if (!activatedExiting && time(NULL) >= timeToExitPlanet) {
+			isOnPlanet = false;
+			activatedExiting = true;
+		}
+		if (isOnPlanet) {
+			player.planetUpdate(deltaTime, Vector2f(0, mapWidth*blockSize), mapHeight*blockSize - ((currentPlanet.getGroundPadding() + currentPlanet.getGroundHeight())*blockSize + 180));
+			drawingModePlanet(mWindow, camera);
+			checkIsOnPlanet();
+		}
+		else {
+			drawSpace(mWindow, camera);
+		}
 		mWindow.display();
 	}
 	isWorking = false;

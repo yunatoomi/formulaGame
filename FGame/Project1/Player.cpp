@@ -92,9 +92,30 @@ Texture generatePlayerTexture() {
 	return playerRenderer.getTexture();
 }
 
-void Player::update(float deltaTime) {
+
+void Player::movement(float deltaTime, Vector2f mapSizes, float minHeight) {
+	if (time(NULL) >= freezedTo) {
+		bool* isStopping = calculateAcceleration(deltaTime);
+		normalizeSpeed(mapSizes, minHeight);
+		stoppingMovement(isStopping[0], isStopping[1], deltaTime);
+	}
+	moveBySpeed(deltaTime);
+}
+
+void Player::moveBySpeed(float deltaTime) {
 	position.y += speed.y * deltaTime;
 	position.x += speed.x * deltaTime;
+}
+
+void Player::normalizeSpeed(Vector2f mapSize, float minHeight) {
+	Vector2f xBarrier(pClamp(-maxSpeed.x, 0, ((position.x-(playerTextureSize.x/2)) * -maxSpeed.x)/500 ), pClamp(0, maxSpeed.x, ((mapSize.y - position.x-50-(playerTextureSize.x/2))*maxSpeed.x)/500 ));
+	
+	speed.x = pClamp(xBarrier.x, xBarrier.y, speed.x);
+	speed.y = pClamp(-maxSpeed.y, pClamp(0, maxSpeed.y, ((minHeight-position.y-(playerTextureSize.y /2))*maxSpeed.y)/100), speed.y);
+	currentAngle = (speed.x / maxSpeed.x) * maxAngle;
+}
+
+bool* Player::calculateAcceleration(float deltaTime) {
 	bool changedX = false;
 	bool changedY = false;
 	if (Keyboard::isKeyPressed(Keyboard::W)) {
@@ -113,9 +134,13 @@ void Player::update(float deltaTime) {
 		speed.x += acceleration * deltaTime;
 		changedX = true;
 	};
-	speed.x = pClamp(-maxSpeed.x, maxSpeed.x, speed.x);
-	speed.y = pClamp(-maxSpeed.y, maxSpeed.y, speed.y);
-	currentAngle = (speed.x / maxSpeed.x) * maxAngle;
+	bool* retArr = new bool[2];
+	retArr[0] = changedX;
+	retArr[1] = changedY;
+	return retArr;
+}
+
+void Player::stoppingMovement(bool changedX, bool changedY, float deltaTime) {
 	if (!changedX) {
 		if (speed.x > 0.1) {
 			speed.x -= acceleration * deltaTime;
@@ -138,6 +163,14 @@ void Player::update(float deltaTime) {
 			speed.y = 0;
 		}
 	}
+}
+
+void Player::planetUpdate(float deltaTime, Vector2f mapSizes, float minHeight) {
+	movement(deltaTime, mapSizes, minHeight);
+}
+
+void Player::freeze(float t) {
+	freezedTo = time(NULL) + t;
 }
 
 Vector2f Player::getPosition() {

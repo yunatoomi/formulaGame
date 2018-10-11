@@ -25,7 +25,7 @@ private:
 	int genMap[mapHeight][mapWidth];
 
 	RectangleShape block;
-
+	int id;
 	mt19937 engine;
 	uniform_real_distribution<> dist;
 	void generateGround();
@@ -44,6 +44,7 @@ public:
 	int getGroundLength();
 	int getGroundPadding();
 	vector<Tree> getTrees();
+	int getId();
 };
 
 #endif

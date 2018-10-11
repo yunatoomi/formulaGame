@@ -52,17 +52,18 @@ Texture getPlanet1(double(*f)(int, double), double step) {
 	for (int i = 0; i <= realRadius * 2; i++) {
 		for (int j = 0; j <= realRadius * 2; j++) {
 			if (circle[i][j] == 0) {
-				s.setFillColor(Color(20, 20, 20));
+				s.setFillColor(Color(120, 120, 120));
 				s.setPosition(Vector2f(j*blockSize, i*blockSize));
 				r.draw(s);
 			}
 			else if (circle[i][j] == 1) {
-				s.setFillColor(Color(0, 0, 0));
+				s.setFillColor(Color(100, 100, 100));
 				s.setPosition(Vector2f(j*blockSize, i*blockSize));
 				r.draw(s);
 			}
 		}
 	}
 	r.display();
-	return r.getTexture();
+	Texture t(r.getTexture());
+	return t;
 }

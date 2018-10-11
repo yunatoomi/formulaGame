@@ -40,7 +40,7 @@ Planet::Planet(int seed) {
 	Vector2i groundHeightRange(3, 7);
 	Vector2i groundScaleRange(20, 40);
 	Vector2i groundPaddingRange(2, 7);
-	
+	id = seed;
 	engine = mt19937(seed);
 	groundHeight = groundHeightRange.x + getRand() * (groundHeightRange.y - groundHeightRange.x);
 	groundScale = groundScaleRange.x + getRand() * (groundScaleRange.y - groundScaleRange.x);
@@ -50,6 +50,10 @@ Planet::Planet(int seed) {
 	block.setFillColor(Color(0, 0, 0));
 
 	generate();
+}
+
+int Planet::getId() {
+	return id;
 }
 
 void Planet::drawPlanet(RenderWindow& Window, Camera camera) {

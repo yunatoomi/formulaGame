@@ -6,6 +6,7 @@
 #include "Camera.h"
 #include "iostream"
 #include "time.h"
+#include "Bullet.h"
 
 using namespace std;
 using namespace sf;
@@ -25,6 +26,8 @@ private:
 	Sprite sprite;
 	Sprite spaceSprite;
 	int freezedTo = 0;
+	int nextTimeToShoot = 0;
+	int shootSpeed = 1;
 	void movement(float deltaTime, Vector2f mapSizes, float minHeight);
 	void stoppingMovement(bool changedX, bool changedY, float deltaTime);
 	Vector2f calculateAcceleration(float deltaTime);
@@ -46,12 +49,13 @@ public:
 	float getCurrentAngle();
 	void freeze(int time);
 	void draw(RenderWindow& Window, Camera camera);
-	void spaceDraw(RenderWindow& Window, Camera camera);
+	void spaceDraw(RenderWindow& Window, Camera camera, float deltaTime);
 	void setPlayerSpriteTexture(Texture texture);
 	void setPlayerSpaceSpriteTexture(Texture texture);
 	void setPosition(Vector2f pos);
 	void setSpeed(Vector2f speed);
 	Vector2f getMaxSpeed();
+	void fire(RenderWindow& window, Camera cam, float deltaTime);
 };
 
 #endif

@@ -2,6 +2,7 @@
 
 const Vector2i playerTextureSize(240, 100);
 const int playerQuality = 10;
+vector<Bullet> bullets;
 
 float pClamp(float min, float max, float val) {
 	if (val < min) {
@@ -45,6 +46,20 @@ float lerp(float a, float b, float t) {
 	return a;
 }
 
+void Player::fire(RenderWindow& window, Camera cam, float deltaTime) {
+	for (int i = 0; i < bullets.size(); i++) {
+		bullets[i].update(deltaTime);
+		bullets[i].draw(window, cam);
+		if (bullets[i].isDie())
+			bullets.erase(bullets.begin() + i);
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Space) && time(NULL) > nextTimeToShoot) {
+		Bullet bullet(getPosition(), currentAngle+90, getMaxSpeed().x * 3);
+		bullets.push_back(bullet);
+		nextTimeToShoot = time(NULL) + shootSpeed;
+	}
+}
+
 Player::Player(Vector2f startPosition, Vector2f mxSp, Vector2f startOffset, float acc, float angl) {
 	acceleration = acc;
 	maxSpeed = mxSp;
@@ -73,10 +88,11 @@ void Player::draw(RenderWindow& Window, Camera camera) {
 	Window.draw(sprite);
 }
 
-void Player::spaceDraw(RenderWindow& Window, Camera camera) {
+void Player::spaceDraw(RenderWindow& Window, Camera camera, float deltaTime) {
 	spaceSprite.setScale(Vector2f(0.5f, 0.5f));
 	spaceSprite.setPosition(getPosition() - camera.getCameraPos());
 	spaceSprite.setRotation(getCurrentAngle());
+	fire(Window, camera, deltaTime);
 	Window.draw(spaceSprite);
 }
 

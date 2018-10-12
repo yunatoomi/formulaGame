@@ -32,14 +32,14 @@ private:
 	void moveBySpeed(float deltaTime);
 	float calculateAngle();
 	float calculateSpaceAngle(bool* stopping, Vector2f acc);
-	void spaceMovement(float deltaTime);
-	void normalizeSpeed();
+	void spaceMovement(float deltaTime, Vector2f minSpaceBarriers, Vector2f maxSpaceBarriers);
+	void normalizeSpeed(Vector2f minSpaceBarriers, Vector2f maxSpaceBarriers);
 	void normalizeSpeed(Vector2f mapSizes, float minHeight);
 public:
 	Player(Vector2f startPosition, Vector2f startOffset, Vector2f mxSp, float acc, float angl);
 
 	void planetUpdate(float deltaTime, Vector2f mapBorders, float minHeight);
-	void spaceUpdate(float deltaTime);
+	void spaceUpdate(float deltaTime, Vector2f minSpaceBarriers, Vector2f maxSpaceBarriers);
 
 	Vector2f getPosition();
 	Vector2f getOffset();
@@ -51,6 +51,7 @@ public:
 	void setPlayerSpaceSpriteTexture(Texture texture);
 	void setPosition(Vector2f pos);
 	void setSpeed(Vector2f speed);
+	Vector2f getMaxSpeed();
 };
 
 #endif

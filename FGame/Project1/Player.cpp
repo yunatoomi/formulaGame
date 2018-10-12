@@ -208,13 +208,13 @@ void Player::movement(float deltaTime, Vector2f mapSizes, float minHeight) {
 	moveBySpeed(deltaTime);
 }
 
-void Player::spaceMovement(float deltaTime) {
+void Player::spaceMovement(float deltaTime, Vector2f minSpaceBarriers, Vector2f maxSpaceBarriers) {
 	if (time(NULL) >= freezedTo) {
 		Vector2f acc = calculateAcceleration(deltaTime);
 		acc.x *= 0.5f;
 		acc.y *= 0.5f;
 		bool* isStopping = accelerationToStopping(acc);
-		normalizeSpeed();
+		normalizeSpeed(minSpaceBarriers, maxSpaceBarriers);
 		currentAngle = lerp(currentAngle, calculateSpaceAngle(isStopping, acc), deltaTime*180);
 		stoppingMovement(isStopping[0], isStopping[1], deltaTime);
 	}
@@ -284,9 +284,23 @@ void Player::normalizeSpeed(Vector2f mapSize, float minHeight) {
 	speed.y = pClamp(-maxSpeed.y, pClamp(0, maxSpeed.y, ((minHeight-position.y-(playerTextureSize.y /2))*maxSpeed.y)/100), speed.y);
 }
 
-void Player::normalizeSpeed() {
-	speed.x = pClamp(-maxSpeed.x*0.5f, maxSpeed.x*0.5f, speed.x);
-	speed.y = pClamp(-maxSpeed.y*0.5f, maxSpeed.y*0.5f, speed.y);
+void Player::normalizeSpeed(Vector2f minSpaceBarriers, Vector2f maxSpaceBarriers) {
+	Vector2f xBarrier(pClamp(-maxSpeed.x * 0.5f, 0, ((position.x - (spaceSprite.getLocalBounds().width / 2)) * -maxSpeed.x * 0.5f) / 500), pClamp(0, maxSpeed.x*0.5f, ((maxSpaceBarriers.x - position.x - 50 - (spaceSprite.getLocalBounds().width / 2))*maxSpeed.x*0.5f) / 500));
+	if (minSpaceBarriers.x == -1) {
+		xBarrier.x = -maxSpeed.x;
+	}
+	if (maxSpaceBarriers.x == -1) {
+		xBarrier.y = maxSpeed.x;
+	}
+	Vector2f yBarrier(pClamp(-maxSpeed.y * 0.5f, 0, ((position.y - (spaceSprite.getLocalBounds().height / 2)) * -maxSpeed.y * 0.5f) / 500), pClamp(0, maxSpeed.y*0.5f, ((maxSpaceBarriers.y - position.y - 50 - (spaceSprite.getLocalBounds().height / 2))*maxSpeed.y*0.5f) / 500));
+	if (minSpaceBarriers.y == -1) {
+		yBarrier.x = -maxSpeed.y;
+	}
+	if (maxSpaceBarriers.y == -1) {
+		yBarrier.y = maxSpeed.y;
+	}
+	speed.x = pClamp(xBarrier.x, xBarrier.y, speed.x);
+	speed.y = pClamp(yBarrier.x, yBarrier.y, speed.y);
 }
 
 bool* Player::accelerationToStopping(Vector2f acceleration) {
@@ -324,6 +338,10 @@ Vector2f Player::calculateAcceleration(float deltaTime) {
 	return acc;
 }
 
+Vector2f Player::getMaxSpeed() {
+	return maxSpeed;
+}
+
 void Player::stoppingMovement(bool changedX, bool changedY, float deltaTime) {
 	if (!changedX) {
 		if (speed.x > 0.1) {
@@ -353,8 +371,8 @@ void Player::planetUpdate(float deltaTime, Vector2f mapSizes, float minHeight) {
 	movement(deltaTime, mapSizes, minHeight);
 }
 
-void Player::spaceUpdate(float deltaTime) {
-	spaceMovement(deltaTime);
+void Player::spaceUpdate(float deltaTime, Vector2f minSpaceBarriers, Vector2f maxSpaceBarriers) {
+	spaceMovement(deltaTime, minSpaceBarriers, maxSpaceBarriers);
 }
 
 void Player::freeze(int t) {

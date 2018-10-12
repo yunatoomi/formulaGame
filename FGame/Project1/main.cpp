@@ -47,11 +47,12 @@ Sprite pl10;
 Sprite pl11;
 Sprite pl12;
 
-Planet currentPlanet(0);
+Planet currentPlanet(4005);
 
 bool isOnPlanet = true;
 int timeToExitPlanet = 0;
 bool activatedExiting = true;
+int currentSector = 0;
 
 void setCameraPos() {
 	Vector2f cameraPos = camera.getCameraPos();
@@ -65,8 +66,8 @@ void setCameraPos() {
 void setCameraSpacePos() {
 	Vector2f cameraPos = camera.getCameraPos();
 	cameraPos = player.getPosition() - player.getOffset();
-	cameraPos.y = clamp(0, 6000, cameraPos.y);
-	cameraPos.x = clamp(0, 6000, cameraPos.x);
+	cameraPos.y = clamp(0, 6000-camera.getCameraSize().y, cameraPos.y);
+	cameraPos.x = clamp(0, 6000-camera.getCameraSize().x, cameraPos.x);
 	camera.setCameraPos(cameraPos);
 }
 
@@ -120,9 +121,9 @@ double function3(int i, double step) {
 
 void checkIsOnPlanet() {
 	if (player.getPosition().y <= 0 && activatedExiting) {
-		player.freeze(3);
+		player.freeze(1);
 		activatedExiting = false;
-		timeToExitPlanet = time(NULL) + 3;
+		timeToExitPlanet = time(NULL) + 1;
 	}
 }
 
@@ -186,9 +187,69 @@ void drawSpace(RenderWindow& window, Camera cam) {
 
 double nextTimeToChange = 0;
 
+float vectorDistance(Vector2f a, Vector2f b) {
+	return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
+}
+
 void checkIsEnteringPlanet() {
 	if (Keyboard::isKeyPressed(Keyboard::E)) {
+		for (int i = 0; i < 4; i++) {
+			if (vectorDistance(player.getPosition(), getPlanetParams(i).position) <= getPlanetParams(i).radius) {
+				currentPlanet = Planet(currentPlanet.getId() - currentPlanet.getId() % 4 + i);
+				isOnPlanet = true;
+				player.setPosition(Vector2f((900) / 2, 10));
+				player.setSpeed(Vector2f(0, player.getMaxSpeed().y / 2));
+			}
+		}
+	}
+}
 
+float* getSpaceSectorSizes(bool* sectorBorders) {
+	float* ret = new float[4];
+	ret[0] = 0;
+	ret[1] = 6000;
+	ret[2] = 0;
+	ret[3] = 6000;
+	for (int i = 0; i < 4; i++) {
+		if (!sectorBorders[i]) {
+			ret[i] = -1;
+		}
+	}
+	return ret;
+}
+
+void isExiting() {
+	Vector2f playerPos = player.getPosition();
+	Vector2f sp(0, 0);
+	bool changed = false;
+	if (playerPos.x <= 0) {
+		currentSector --;
+		playerPos.x = 5999;
+		changed = true;
+		sp.x = -player.getMaxSpeed().x;
+	}
+	if (playerPos.x >= 6000) {
+		currentSector ++;
+		playerPos.x = 1;
+		changed = true;
+		sp.x = player.getMaxSpeed().x;
+	}
+	if (playerPos.y <= 0) {
+		currentSector -= 500;
+		playerPos.y = 5999;
+		sp.y = -player.getMaxSpeed().y;
+		changed = true;
+	}
+	if (playerPos.y >= 6000) {
+		currentSector += 500;
+		playerPos.y = 1;
+		sp.y = player.getMaxSpeed().y;
+		changed = true;
+	}
+	if (changed) {
+		player.setPosition(playerPos);
+		player.setSpeed(sp);
+		loadSpaceSector(getStringSector(currentSector));
 	}
 }
 
@@ -274,6 +335,7 @@ int main()
 			Vector2f pos = loadSpaceSector(currentPlanet);
 			player.setPosition(pos);
 			player.setSpeed(Vector2f(0, 0));
+			currentSector = floor(currentPlanet.getId()/4);
 		}
 		if (isOnPlanet) {
 			player.planetUpdate(deltaTime, planetBarriers, minHeight);
@@ -283,8 +345,11 @@ int main()
 		}
 		else {
 			drawSpace(mWindow, camera);
-			player.spaceUpdate(deltaTime);
+			float *borders = getSpaceSectorSizes(getSectorBorders(getStringSector(currentSector)));
+			player.spaceUpdate(deltaTime, Vector2f(borders[0], borders[2]), Vector2f(borders[1], borders[3]));
 			setCameraSpacePos();
+			checkIsEnteringPlanet();
+			isExiting();
 		}
 		mWindow.display();
 	}

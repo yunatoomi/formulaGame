@@ -10,6 +10,11 @@ void Planet::generate() {
 }
 
 void Planet::generateGround() {
+	for (int i = 0; i < mapHeight; i++) {
+		for (int j = 0; j < mapWidth; j++) {
+			genMap[i][j] = 0;
+		}
+	}
 	for (int i = 0; i < groundLength; i++) {
 		int groundC = ceil(abs(sin(((i + 1)*groundScale*M_PI)))*groundHeight);
 		for (int j = 1; j <= groundPadding + 1; j++) {
@@ -24,6 +29,7 @@ void Planet::generateGround() {
 }
 
 void Planet::generateTrees() {
+	trees.clear();
 	Vector2f distanceRange(100, 500);
 	for (float i = distanceRange.x + getRand()*(distanceRange.y - distanceRange.x); i < mapWidth*bSize; i += distanceRange.x + getRand()*(distanceRange.y - distanceRange.x)) {
 		for (int j = groundPadding; j <= groundPadding + groundHeight; j++) {
@@ -42,6 +48,7 @@ Planet::Planet(int seed) {
 	Vector2i groundPaddingRange(2, 7);
 	id = seed;
 	engine = mt19937(seed);
+	dist.reset();
 	groundHeight = groundHeightRange.x + getRand() * (groundHeightRange.y - groundHeightRange.x);
 	groundScale = groundScaleRange.x + getRand() * (groundScaleRange.y - groundScaleRange.x);
 	groundPadding = groundPaddingRange.x + getRand() * (groundPaddingRange.y - groundPaddingRange.x);

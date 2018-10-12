@@ -10,6 +10,7 @@ PlanetParams::PlanetParams(int t, Color c, Vector2f s, Vector2f pos) {
 	color = c;
 	scale = s;
 	position = pos;
+	radius = 260 * s.x;
 }
 
 PlanetParams getPlanetParams(int id) {
@@ -89,4 +90,34 @@ Vector2f loadSpaceSector(Planet currentPlanet) {
 
 	loadSpaceSector(getStringSector(getIdSector(currentPlanet.getId())));
 	return planets[currentPlanet.getId()%4].position;
+}
+
+bool* getSectorBorders(string sector) {
+	int sectorId = getIdSector(sector);
+	bool* ret = new bool[4];
+	if (sectorId % 500 == 0) {
+		ret[0] = true;
+	}
+	else {
+		ret[0] = false;
+	}
+	if (sectorId % 500 == 499) {
+		ret[1] = true;
+	}
+	else {
+		ret[1] = false;
+	}
+	if (floor(sectorId / 500) == 0) {
+		ret[2] = true;
+	}
+	else {
+		ret[2] = false;
+	}
+	if (floor(sectorId / 500) == 499) {
+		ret[3] = true;
+	}
+	else {
+		ret[3] = false;
+	}
+	return ret;
 }

@@ -20,12 +20,15 @@ public:
 	Color color;
 	Vector2f scale;
 	Vector2f position;
+	float radius;
 };
 
 float range(float min, float max);
 
+string getStringSector(int sectorId);
 Vector2f loadSpaceSector(String sector);
 Vector2f loadSpaceSector(Planet currentPlanet);
+bool* getSectorBorders(string sector);
 
 PlanetParams getPlanetParams(int id);
 

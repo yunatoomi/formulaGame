@@ -75,7 +75,10 @@ Vector2f loadSpaceSector(String sector) {
 		int type = dist(engine) * 11;
 		Color randColor = Color(range(80, 180), range(80, 180), range(80, 180));
 		float scale = 0.5 + dist(engine) * 1.5;
-		Vector2f pos(range(3000, 5000), range(3000, 5000));
+		Vector2f pos(range(500, 1500), range(500, 1500));
+		if (i > 0) {
+			pos += planets[i - 1].position;
+		}
 		PlanetParams p(type, randColor, Vector2f(scale, scale), pos);
 		planets[i] = p;
 	}

@@ -62,6 +62,14 @@ void setCameraPos() {
 	camera.setCameraPos(cameraPos);
 }
 
+void setCameraSpacePos() {
+	Vector2f cameraPos = camera.getCameraPos();
+	cameraPos = player.getPosition() - player.getOffset();
+	cameraPos.y = clamp(0, 6000, cameraPos.y);
+	cameraPos.x = clamp(0, 6000, cameraPos.x);
+	camera.setCameraPos(cameraPos);
+}
+
 Texture rendTexture(Tree& tree) {
 	RenderTexture treeRenderTexture;
 	if (!treeRenderTexture.create(tree.getRoot().length*tree.getRoot().level, tree.getRoot().length*tree.getRoot().level)) {
@@ -118,8 +126,7 @@ void checkIsOnPlanet() {
 	}
 }
 
-void drawSpace(RenderWindow& window, Camera cam) {
-	window.clear(Color(25, 25, 25));
+void drawPlanets(RenderWindow& window, Camera cam) {
 	for (int i = 0; i < 4; i++) {
 		PlanetParams p = getPlanetParams(i);
 		Sprite s;
@@ -167,12 +174,23 @@ void drawSpace(RenderWindow& window, Camera cam) {
 		s.setPosition(p.position - camera.getCameraPos());
 		s.setColor(p.color);
 		s.setScale(p.scale);
-		//cout << camera.getCameraPos().x << "/" << camera.getCameraPos().y << "/" << p.position.x << "/" << p.position.y << endl;
 		window.draw(s);
 	}
 }
 
+void drawSpace(RenderWindow& window, Camera cam) {
+	window.clear(Color(25, 25, 25));
+	drawPlanets(window, cam);
+	player.spaceDraw(window, cam);
+}
+
 double nextTimeToChange = 0;
+
+void checkIsEnteringPlanet() {
+	if (Keyboard::isKeyPressed(Keyboard::E)) {
+
+	}
+}
 
 int main()
 {
@@ -191,7 +209,11 @@ int main()
 	background.setFillColor(Color(255, 255, 255));
 
 	player.setPlayerSpriteTexture(generatePlayerTexture());
-	Texture p = generatePlayerTexture();
+	Texture playerTexture = generatePlayerTexture();
+
+	player.setPlayerSpaceSpriteTexture(generateSpacePlayerTexture());
+	Texture spacePlayerTexture = generateSpacePlayerTexture();
+
 	pl1.setTexture(getPlanet1(function1, 1));
 	Texture p1 = getPlanet1(function1, 0.1);
 	pl1.setOrigin(Vector2f(p1.getSize().x/2, p1.getSize().y/2));
@@ -229,6 +251,10 @@ int main()
 	Texture p12 = getPlanet1(function3, 4);
 	pl12.setOrigin(Vector2f(p12.getSize().x / 2, p12.getSize().y / 2));
 
+	float minHeight = mapHeight*blockSize - ((currentPlanet.getGroundPadding() + currentPlanet.getGroundHeight())*blockSize + 180);
+	Vector2f planetBarriers(0, mapWidth*blockSize);
+	Vector2f spaceSectorBarriers(20000, 20000);
+
 	while (mWindow.isOpen()) {
 		Event event;
 		
@@ -246,18 +272,19 @@ int main()
 			isOnPlanet = false;
 			activatedExiting = true;
 			Vector2f pos = loadSpaceSector(currentPlanet);
-			pos.x -= camera.getCameraSize().x / 2;
-			pos.y -= camera.getCameraSize().y / 2;
-			camera.setCameraPos(pos);
+			player.setPosition(pos);
+			player.setSpeed(Vector2f(0, 0));
 		}
 		if (isOnPlanet) {
-			player.planetUpdate(deltaTime, Vector2f(0, mapWidth*blockSize), mapHeight*blockSize - ((currentPlanet.getGroundPadding() + currentPlanet.getGroundHeight())*blockSize + 180));
+			player.planetUpdate(deltaTime, planetBarriers, minHeight);
 			drawingModePlanet(mWindow, camera);
 			checkIsOnPlanet();
 			setCameraPos();
 		}
 		else {
 			drawSpace(mWindow, camera);
+			player.spaceUpdate(deltaTime);
+			setCameraSpacePos();
 		}
 		mWindow.display();
 	}

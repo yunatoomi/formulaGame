@@ -11,6 +11,7 @@ using namespace std;
 using namespace sf;
 
 Texture generatePlayerTexture();
+Texture generateSpacePlayerTexture();
 
 class Player {
 private:
@@ -22,26 +23,34 @@ private:
 	float maxAngle;
 	float currentAngle;
 	Sprite sprite;
-	Sprite upSprite;
+	Sprite spaceSprite;
 	int freezedTo = 0;
 	void movement(float deltaTime, Vector2f mapSizes, float minHeight);
 	void stoppingMovement(bool changedX, bool changedY, float deltaTime);
-	bool* calculateAcceleration(float deltaTime);
+	Vector2f calculateAcceleration(float deltaTime);
+	bool* accelerationToStopping(Vector2f acceleration);
 	void moveBySpeed(float deltaTime);
+	float calculateAngle();
+	float calculateSpaceAngle(bool* stopping, Vector2f acc);
+	void spaceMovement(float deltaTime);
+	void normalizeSpeed();
 	void normalizeSpeed(Vector2f mapSizes, float minHeight);
 public:
 	Player(Vector2f startPosition, Vector2f startOffset, Vector2f mxSp, float acc, float angl);
 
-	void planetUpdate(float deltaTime, Vector2f mapSizes, float minHeight);
+	void planetUpdate(float deltaTime, Vector2f mapBorders, float minHeight);
 	void spaceUpdate(float deltaTime);
 
 	Vector2f getPosition();
 	Vector2f getOffset();
 	float getCurrentAngle();
-	void freeze(float time);
+	void freeze(int time);
 	void draw(RenderWindow& Window, Camera camera);
+	void spaceDraw(RenderWindow& Window, Camera camera);
 	void setPlayerSpriteTexture(Texture texture);
-	void setPlayerUpSpriteTexture(Texture texture);
+	void setPlayerSpaceSpriteTexture(Texture texture);
+	void setPosition(Vector2f pos);
+	void setSpeed(Vector2f speed);
 };
 
 #endif

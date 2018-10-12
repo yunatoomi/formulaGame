@@ -9,6 +9,7 @@
 #include "Camera.h"
 #include "random"
 #include "Tree.h"
+#include "Bullet.h"
 #include "Planet.h"
 #include "vector"
 #include "PlanetTextures.h"
@@ -30,9 +31,6 @@ Player player(Vector2f((900) / 2, (700) / 2), Vector2f(500, 500), Vector2f((900)
 RectangleShape block;
 
 vector<Sprite> treeSprites;
-
-//Tree tree(Branch(Vector2f(300, 300), 8, 60, 180, 3), 13, 3);
-//Tree tree2(Branch(Vector2f(500, 300), 8, 60, 180, 3), 22, 3);
 
 Sprite pl1;
 Sprite pl2;
@@ -179,10 +177,10 @@ void drawPlanets(RenderWindow& window, Camera cam) {
 	}
 }
 
-void drawSpace(RenderWindow& window, Camera cam) {
+void drawSpace(RenderWindow& window, Camera cam, float deltaTime) {
 	window.clear(Color(25, 25, 25));
 	drawPlanets(window, cam);
-	player.spaceDraw(window, cam);
+	player.spaceDraw(window, cam, deltaTime);
 }
 
 double nextTimeToChange = 0;
@@ -312,6 +310,9 @@ int main()
 	Texture p12 = getPlanet1(function3, 4);
 	pl12.setOrigin(Vector2f(p12.getSize().x / 2, p12.getSize().y / 2));
 
+	setBulletTexture(getBulletTexture());
+	Texture bulletTexture = getBulletTexture();
+
 	float minHeight = mapHeight*blockSize - ((currentPlanet.getGroundPadding() + currentPlanet.getGroundHeight())*blockSize + 180);
 	Vector2f planetBarriers(0, mapWidth*blockSize);
 	Vector2f spaceSectorBarriers(20000, 20000);
@@ -344,7 +345,7 @@ int main()
 			setCameraPos();
 		}
 		else {
-			drawSpace(mWindow, camera);
+			drawSpace(mWindow, camera, deltaTime);
 			float *borders = getSpaceSectorSizes(getSectorBorders(getStringSector(currentSector)));
 			player.spaceUpdate(deltaTime, Vector2f(borders[0], borders[2]), Vector2f(borders[1], borders[3]));
 			setCameraSpacePos();

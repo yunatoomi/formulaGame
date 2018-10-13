@@ -8,6 +8,7 @@
 #include "string"
 #include "sstream"
 #include "PlanetTextures.h"
+#include "EnemySpawner.h"
 
 using namespace std;
 using namespace sf;
@@ -29,6 +30,10 @@ string getStringSector(int sectorId);
 Vector2f loadSpaceSector(String sector);
 Vector2f loadSpaceSector(Planet currentPlanet);
 bool* getSectorBorders(string sector);
+
+void spawnerUpdate(Vector2f playerPos, float deltaTime);
+void drawSpawner(RenderWindow& window, Camera cam, Sprite spawnerSprite);
+bool isDied(Vector2f point);
 
 PlanetParams getPlanetParams(int id);
 

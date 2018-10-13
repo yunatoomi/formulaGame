@@ -13,6 +13,8 @@
 #include "Planet.h"
 #include "vector"
 #include "PlanetTextures.h"
+#include "Enemy.h"
+#include "EnemySpawner.h"
 
 using namespace sf;
 using namespace std;
@@ -22,6 +24,8 @@ const string name = "Formula game";
 bool isWorking = true;
 
 const int blockSize = 10;
+
+bool playingGame = true;
 
 Camera camera(Vector2i(900, 700), Vector2f(0, 0));
 Camera spaceCamera(Vector2i(900, 700), Vector2f(0, 0));
@@ -45,12 +49,15 @@ Sprite pl10;
 Sprite pl11;
 Sprite pl12;
 
+Sprite spawnerSprite;
+
 Planet currentPlanet(4005);
 
 bool isOnPlanet = true;
 int timeToExitPlanet = 0;
 bool activatedExiting = true;
 int currentSector = 0;
+int respawn = 0;
 
 void setCameraPos() {
 	Vector2f cameraPos = camera.getCameraPos();
@@ -180,7 +187,13 @@ void drawPlanets(RenderWindow& window, Camera cam) {
 void drawSpace(RenderWindow& window, Camera cam, float deltaTime) {
 	window.clear(Color(25, 25, 25));
 	drawPlanets(window, cam);
-	player.spaceDraw(window, cam, deltaTime);
+	if(playingGame)
+		player.spaceDraw(window, cam, deltaTime, isDied);
+	drawSpawner(window, cam, spawnerSprite);
+}
+
+bool isPlayerDied() {
+	return isDied(player.getPosition());
 }
 
 double nextTimeToChange = 0;
@@ -259,6 +272,8 @@ int main()
 	for (int i = 0; i < 100; i++) {
 		std::cout << dist(engine) << std::endl;
 	}*/
+	srand(time(NULL));
+	currentPlanet = Planet(rand() * 99999);
 	Clock clock;
 	RenderWindow mWindow(VideoMode(camera.getCameraSize().x, camera.getCameraSize().y), name, Style::Close);
 	block.setSize(Vector2f(blockSize, blockSize));
@@ -313,10 +328,15 @@ int main()
 	setBulletTexture(getBulletTexture());
 	Texture bulletTexture = getBulletTexture();
 
+	setEnemyTexture(getEnemyTexture());
+	Texture enemyTexture = getEnemyTexture();
+
 	float minHeight = mapHeight*blockSize - ((currentPlanet.getGroundPadding() + currentPlanet.getGroundHeight())*blockSize + 180);
 	Vector2f planetBarriers(0, mapWidth*blockSize);
 	Vector2f spaceSectorBarriers(20000, 20000);
 
+	spawnerSprite.setTexture(getSpawnTexture());
+	Texture spawnerTexture = getSpawnTexture();
 	while (mWindow.isOpen()) {
 		Event event;
 		
@@ -330,6 +350,13 @@ int main()
 		float deltaTime = clock.getElapsedTime().asMicroseconds();
 		deltaTime = deltaTime / 1000000;
 		clock.restart();
+		if (!playingGame && time(NULL) >= respawn) {
+			playingGame = true;
+			currentPlanet = Planet(rand() * 99999);
+			isOnPlanet = true;
+			player.setPosition(Vector2f((900) / 2, (700) / 2));
+			player.setSpeed(Vector2f(0, 0));
+		}
 		if (!activatedExiting && time(NULL) >= timeToExitPlanet) {
 			isOnPlanet = false;
 			activatedExiting = true;
@@ -347,9 +374,16 @@ int main()
 		else {
 			drawSpace(mWindow, camera, deltaTime);
 			float *borders = getSpaceSectorSizes(getSectorBorders(getStringSector(currentSector)));
-			player.spaceUpdate(deltaTime, Vector2f(borders[0], borders[2]), Vector2f(borders[1], borders[3]));
+			if (playingGame) {
+				player.spaceUpdate(deltaTime, Vector2f(borders[0], borders[2]), Vector2f(borders[1], borders[3]));
+				if (isPlayerDied()) {
+					playingGame = false;
+					respawn = time(NULL) + 3;
+				}
+			}
 			setCameraSpacePos();
 			checkIsEnteringPlanet();
+			spawnerUpdate(player.getPosition(), deltaTime);
 			isExiting();
 		}
 		mWindow.display();

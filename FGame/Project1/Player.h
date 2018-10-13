@@ -49,13 +49,13 @@ public:
 	float getCurrentAngle();
 	void freeze(int time);
 	void draw(RenderWindow& Window, Camera camera);
-	void spaceDraw(RenderWindow& Window, Camera camera, float deltaTime);
+	void spaceDraw(RenderWindow& Window, Camera camera, float deltaTime, bool(*f)(Vector2f));
 	void setPlayerSpriteTexture(Texture texture);
 	void setPlayerSpaceSpriteTexture(Texture texture);
 	void setPosition(Vector2f pos);
 	void setSpeed(Vector2f speed);
 	Vector2f getMaxSpeed();
-	void fire(RenderWindow& window, Camera cam, float deltaTime);
+	void fire(RenderWindow& window, Camera cam, float deltaTime, bool(*f)(Vector2f));
 };
 
 #endif

@@ -46,12 +46,17 @@ float lerp(float a, float b, float t) {
 	return a;
 }
 
-void Player::fire(RenderWindow& window, Camera cam, float deltaTime) {
+void Player::fire(RenderWindow& window, Camera cam, float deltaTime, bool(*f)(Vector2f)) {
 	for (int i = 0; i < bullets.size(); i++) {
 		bullets[i].update(deltaTime);
 		bullets[i].draw(window, cam);
-		if (bullets[i].isDie())
+		if (f(bullets[i].getPosition())) {
 			bullets.erase(bullets.begin() + i);
+		}
+		else {
+			if (bullets[i].isDie())
+				bullets.erase(bullets.begin() + i);
+		}
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Space) && time(NULL) > nextTimeToShoot) {
 		Bullet bullet(getPosition(), currentAngle+90, getMaxSpeed().x * 3);
@@ -88,11 +93,11 @@ void Player::draw(RenderWindow& Window, Camera camera) {
 	Window.draw(sprite);
 }
 
-void Player::spaceDraw(RenderWindow& Window, Camera camera, float deltaTime) {
+void Player::spaceDraw(RenderWindow& Window, Camera camera, float deltaTime, bool (*f)(Vector2f)) {
 	spaceSprite.setScale(Vector2f(0.5f, 0.5f));
 	spaceSprite.setPosition(getPosition() - camera.getCameraPos());
 	spaceSprite.setRotation(getCurrentAngle());
-	fire(Window, camera, deltaTime);
+	fire(Window, camera, deltaTime, *f);
 	Window.draw(spaceSprite);
 }
 

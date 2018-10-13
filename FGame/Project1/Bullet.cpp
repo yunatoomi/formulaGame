@@ -42,6 +42,10 @@ void Bullet::draw(RenderWindow& window, Camera cam) {
 	window.draw(bullet1);
 }
 
+Vector2f Bullet::getPosition() {
+	return position;
+}
+
 Texture getBulletTexture() {
 	RenderTexture r;
 	if (!r.create(30, 30)) {

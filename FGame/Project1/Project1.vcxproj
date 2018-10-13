@@ -140,17 +140,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemySpawner.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Planet.cpp" />
+    <ClCompile Include="PlanetTextures.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Space.cpp" />
     <ClCompile Include="SupMath.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemySpawner.h" />
     <ClInclude Include="Planet.h" />
+    <ClInclude Include="PlanetTextures.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Space.h" />
     <ClInclude Include="SupMath.h" />
     <ClInclude Include="Tree.h" />
   </ItemGroup>

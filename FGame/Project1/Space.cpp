@@ -83,7 +83,37 @@ Vector2f loadSpaceSector(String sector) {
 		PlanetParams p(type, randColor, Vector2f(scale, scale), pos);
 		planets[i] = p;
 	}
+	reset();
+	setScale(0.5f + dist(engine) * 1.5f);
+	setPosition(Vector2f(range(0, 6000), range(0, 6000)));
 	return Vector2f(0, 0);
+}
+
+void spawnerUpdate(Vector2f playerPos, float deltaTime) {
+	spawn(playerPos);
+	for (int i = 0; i < getEnemyCount(); i++) {
+		updateEnemy(i, deltaTime, playerPos);
+		if (getEnemy(i).isDied)
+			eraseEnemy(i);
+	}
+}
+
+bool isDied(Vector2f pos) {
+	for (int i = 0; i < getEnemyCount(); i++) {
+		if (isEnemyCollided(i, pos))
+			return true;
+	}
+	return false;
+}
+
+void drawSpawner(RenderWindow& window, Camera cam, Sprite spawnerSprite) {
+	spawnerSprite.setPosition(getPosition() - cam.getCameraPos());
+	spawnerSprite.setScale(Vector2f(getScale(), getScale()));
+	window.draw(spawnerSprite);
+	for (int i = 0; i < getEnemyCount(); i++) {
+		Enemy e = getEnemy(i);
+		e.draw(window, cam);
+	}
 }
 
 Vector2f loadSpaceSector(Planet currentPlanet) {

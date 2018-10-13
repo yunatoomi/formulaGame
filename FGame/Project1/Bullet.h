@@ -23,6 +23,7 @@ public:
 	void update(float deltaTime);
 	void draw(RenderWindow& window, Camera cam);
 	bool isDie();
+	Vector2f getPosition();
 };
 
 #endif

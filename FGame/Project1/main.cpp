@@ -273,7 +273,7 @@ int main()
 		std::cout << dist(engine) << std::endl;
 	}*/
 	srand(time(NULL));
-	currentPlanet = Planet(rand() * 99999);
+	currentPlanet = Planet(rand() % 1000000);
 	Clock clock;
 	RenderWindow mWindow(VideoMode(camera.getCameraSize().x, camera.getCameraSize().y), name, Style::Close);
 	block.setSize(Vector2f(blockSize, blockSize));
@@ -352,7 +352,7 @@ int main()
 		clock.restart();
 		if (!playingGame && time(NULL) >= respawn) {
 			playingGame = true;
-			currentPlanet = Planet(rand() * 99999);
+			currentPlanet = Planet(rand() % 1000000);
 			isOnPlanet = true;
 			player.setPosition(Vector2f((900) / 2, (700) / 2));
 			player.setSpeed(Vector2f(0, 0));
